@@ -57,6 +57,12 @@ tap("KeyX"); tap("KeyC"); tap("KeyM"); tap("KeyM"); tap("KeyP"); tap("KeyP"); ta
 frames(100);
 console.log("smoke ok");
 
+// ---------- first steps are jumpable like a real player ----------
+tp(81, 43); frames(3); hold("ArrowRight"); hold("Space"); frames(30); release("Space"); release("ArrowRight");
+assert((MS.P.y + MS.P.h) <= 41.5 * T && MS.P.x > 83 * T, "start podium (2-up) jumps on");
+tp(67, 43); frames(3); hold("Space"); frames(30); release("Space");
+assert((MS.P.y + MS.P.h) <= 41.5 * T, "first shaft ledge (2-up) jumps on");
+
 // ---------- dash gate: without dash the gap is a spiked pit ----------
 MS.save.ab.dash = false;
 tp(68, 14); hold("ArrowRight"); hold("Space"); frames(90); release("Space"); release("ArrowRight");
@@ -88,7 +94,7 @@ tp(83.5, 13); frames(4); assert(MS.save.ab.walljump === true, "wall-jump shrine 
 tp(96.5, 6.5); frames(4); assert(MS.save.ab.doublejump === true, "double-jump shrine pickup");
 const shardSpots = [[123.5, 27.5], [13.5, 42.5], [63.5, 28.5], [22.5, 40.5], [50.5, 42.5], [117.5, 23.5], [78.5, 6.5]];
 shardSpots.forEach((s, i) => { tp(s[0], s[1]); frames(4); assert((MS.save.shards >> i & 1) === 1, "shard " + i + " pickup"); });
-const heartSpots = [[102.5, 33.5], [11.5, 36.5], [110.5, 38.5]];
+const heartSpots = [[102.5, 35.5], [11.5, 36.5], [110.5, 38.5]];
 heartSpots.forEach((s, i) => { tp(s[0], s[1]); frames(4); assert((MS.save.hearts >> i & 1) === 1, "heart " + i + " pickup (maxhp=" + MS.save.maxhp + ")"); });
 assert(MS.save.maxhp === 8, "max hp raised to 8");
 

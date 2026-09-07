@@ -190,7 +190,7 @@
   var visited = {};
 
   // ---------------- physics ----------------
-  var GRAV = 2600, MOVE = 330, JUMPV = 840, MAXFALL = 1400;
+  var GRAV = 2600, MOVE = 330, JUMPV = 870, MAXFALL = 1400;
   function moveY(ent, dy) {
     ent.y += dy;
     var x0 = Math.floor(ent.x / T), x1 = Math.floor((ent.x + ent.w - 1) / T);
@@ -244,7 +244,7 @@
     if (down("left")) { ax = -1; P.face = -1; }
     if (down("right")) { ax = 1; P.face = 1; }
 
-    if (hit("jump")) P.jbuf = 0.12;
+    if (hit("jump")) P.jbuf = 0.15;
     // dash is resolved after jumps below so same-frame jump+dash keeps the jump
     P.pendDash = hit("dash") && save.ab.dash && P.dashCD <= 0 && P.canDash;
     if (hit("atk") && P.atkCD <= 0) {
@@ -321,9 +321,9 @@
         else puff(P.x + P.w / 2, P.y + P.h, 4, "#999", 70);
       }
       P.fallMax = 0;
-      P.ground = true; P.coyote = 0.09; P.canDJ = true; P.canDash = true;
+      P.ground = true; P.coyote = 0.12; P.canDJ = true; P.canDash = true;
     } else if (hy === "ceil") { /* bonk */ }
-    else { if (P.ground) P.coyote = 0.09; P.ground = false; }
+    else { if (P.ground) P.coyote = 0.12; P.ground = false; }
 
     // spikes
     var cx0 = Math.floor((P.x + 4) / T), cx1 = Math.floor((P.x + P.w - 4) / T);

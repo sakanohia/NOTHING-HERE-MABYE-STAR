@@ -16,8 +16,8 @@
 
     // ---- start ruins (east): wide, gentle, landmark podium ----
     carve(58, 33, 112, 42);
-    solid(84, 40, 88, 42);                       // ruined podium landmark
-    oneway(92, 38, 97); oneway(100, 34, 104);
+    solid(84, 41, 88, 42);                       // ruined podium (2 up)
+    oneway(92, 39, 97); oneway(100, 37, 104);
     // hidden heart nook (breakable wall at x=109)
     solid(110, 33, 111, 35);
     carve(110, 36, 111, 40);
@@ -33,15 +33,16 @@
     carve(28, 39, 35, 42);                       // dash shrine tunnel (level floor)
     carve(16, 37, 27, 42);                       // practice room: pit + spike strip
     carve(21, 42, 23, 44);                       // safe pit (dash practice, jump-out-able)
-    spikes(24, 42, 27);                          // 4-wide strip: dash over it
+    spikes(24, 42, 26);                          // 3-wide strip: dash over it
     carve(6, 33, 15, 42);                        // deep cave (bench)
-    oneway(10, 37, 12);
+    solid(6, 41, 7, 42); oneway(10, 38, 12);
 
     // ---- north shaft: chunky balcony ledges, 3-row steps ----
     carve(66, 16, 71, 32);
-    oneway(69, 39, 71); oneway(66, 36, 68); oneway(69, 33, 71);
-    oneway(66, 30, 68); oneway(69, 27, 71); oneway(66, 24, 68);
-    oneway(69, 21, 71); oneway(66, 18, 68); oneway(69, 15, 71);
+    oneway(66, 41, 68); oneway(69, 38, 71); oneway(66, 36, 68);
+    oneway(69, 33, 71); oneway(66, 31, 68); oneway(69, 28, 71);
+    oneway(66, 26, 68); oneway(69, 23, 71); oneway(66, 21, 68);
+    oneway(69, 18, 71); oneway(66, 16, 68);
     // ---- left hall: bench + sign before THE gap ----
     carve(64, 8, 71, 13);
     solid(64, 14, 71, 15);
@@ -82,7 +83,7 @@
         { x: 123, y: 26 }, { x: 13, y: 42 }, { x: 63, y: 28 }, { x: 22, y: 40 },
         { x: 50, y: 42 }, { x: 117, y: 23 }, { x: 78, y: 6 }
       ],
-      hearts: [{ x: 102, y: 33 }, { x: 11, y: 36 }, { x: 110, y: 38 }],
+      hearts: [{ x: 102, y: 35 }, { x: 11, y: 36 }, { x: 110, y: 38 }],
       enemies: [
         { kind: "slime", x: 90, y: 42 }, { kind: "slime", x: 105, y: 42 },
         { kind: "slime", x: 40, y: 42 }, { kind: "slime", x: 66, y: 6 }, { kind: "slime", x: 92, y: 6 },
@@ -127,7 +128,7 @@
     chk("boss", w.boss);
     w.enemies.forEach(function (e, i) { chk("enemy" + i, { x: e.x, y: e.y }); });
     // geometry sanity: jumpable ledge steps (<=3 rows) in the shaft
-    var steps = [42, 39, 36, 33, 30, 27, 24, 21, 18, 15, 14];
+    var steps = [43, 41, 38, 36, 33, 31, 28, 26, 23, 21, 18, 16, 14];
     for (var s = 1; s < steps.length; s++) if (steps[s - 1] - steps[s] > 3) fails.push("shaft step too high: " + steps[s - 1] + "->" + steps[s]);
     return fails;
   }
