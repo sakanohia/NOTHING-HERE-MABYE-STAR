@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>也许之星 MABYE STAR · 银河恶魔城</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  html,body{margin:0;height:100%;overflow:hidden;background:#070512;
+    background-image:
+      radial-gradient(1200px 700px at 70% -10%, rgba(90,60,160,.28), transparent 60%),
+      radial-gradient(900px 600px at 15% 110%, rgba(40,120,140,.18), transparent 60%),
+      radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,.5), transparent 60%),
+      radial-gradient(2px 2px at 80% 20%, rgba(200,180,255,.45), transparent 60%),
+      radial-gradient(1.5px 1.5px at 40% 70%, rgba(255,255,255,.35), transparent 60%),
+      radial-gradient(1.5px 1.5px at 65% 55%, rgba(160,240,224,.4), transparent 60%);
+    font-family:ui-monospace,"Cascadia Mono","Noto Sans Mono CJK SC",monospace}
+  #wrap{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+  #frame{position:relative;padding:10px;border-radius:14px;
+    background:linear-gradient(160deg, rgba(122,79,198,.35), rgba(20,14,34,.9) 40%, rgba(63,174,140,.22));
+    box-shadow:0 0 90px rgba(122,79,198,.30), 0 0 24px rgba(0,0,0,.8), inset 0 0 18px rgba(0,0,0,.7)}
+  canvas{display:block;image-rendering:pixelated;image-rendering:crisp-edges;background:#0b0814;border-radius:8px}
+  #cap{color:rgba(230,220,255,.55);font-size:12px;letter-spacing:.14em;text-align:center}
+  #cap b{color:#7ef0e0;font-weight:600;letter-spacing:.3em}
+  #cap .dot{color:#9a86e8}
+</style>
+</head>
+<body>
+<div id="wrap">
+  <div id="frame"><canvas id="game" width="960" height="540"></canvas></div>
+  <div id="cap"><b>MABYE STAR</b> <span class="dot">✦</span> 也许之星 <span class="dot">✦</span> ←→ 移动 · Z 跳 · X 攻击 · C 冲刺 · M 星图</div>
+</div>
+<script src="js/world.js"></script>
+<script src="js/game.js"></script>
+<script>
+  var c = document.getElementById("game");
+  function fit(){
+    var s = Math.min((innerWidth - 60) / 960, (innerHeight - 90) / 540);
+    s = Math.max(1, Math.floor(s * 2) / 2);
+    c.style.width = (960 * s) + "px"; c.style.height = (540 * s) + "px";
+  }
+  addEventListener("resize", fit); fit();
+</script>
+</body>
+</html>
